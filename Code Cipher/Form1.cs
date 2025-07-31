@@ -16,5 +16,20 @@ namespace Code_Cipher
         {
             InitializeComponent();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(txtCipher.Text)) { Clipboard.SetText(txtCipher.Text); }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            txtPlain.Text = txtCipher.Text = "";
+        }
+
+        private void btnEncrypt_Click(object sender, EventArgs e)
+        {
+            btnEncrypt.Text = (btnEncrypt.Text=="Encrypt") ? "Decrypt" : "Encrypt";
+        }
     }
 }
