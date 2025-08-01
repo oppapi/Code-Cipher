@@ -12,7 +12,6 @@ namespace Code_Cipher
 {
     public partial class Form1 : Form
     {
-        private char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
 
         public Form1()
         {
@@ -26,32 +25,51 @@ namespace Code_Cipher
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            txtPlain.Text = txtCipher.Text = "";
+            txtPlain.Text = txtCipher.Text = txtKeyword.Text = "";
         }
 
         private void btnEncrypt_Click(object sender, EventArgs e)
         {
-            btnEncrypt.Text = (btnEncrypt.Text=="Encrypt") ? "Decrypt" : "Encrypt";
-            foreach (char c in txtPlain.Text.ToUpper())
+            string input = txtPlain.Text.ToUpper();
+            string keyword = txtKeyword.Text.ToUpper();
+
+            if (string.IsNullOrEmpty(keyword))
             {
-                if (convertChar(c) != -1)
+                MessageBox.Show("Please enter a keyword.");
+                return;
+            }
+
+            StringBuilder result = new StringBuilder();
+            int keywordIndex = 0;
+
+            foreach (char c in input)
+            {
+                if (char.IsLetter(c))
                 {
-                    txtCipher.Text += alphabet[(index + 3) % 26];
+                    int shift = keyword[keywordIndex % keyword.Length] - 'A';
+                    char encrypted = (char)(((c - 'A' + shift) % 26) + 'A');
+                    result.Append(encrypted);
+                    keywordIndex++;
                 }
                 else
                 {
-                    txtCipher.Text += c;
+                    result.Append(c); 
                 }
             }
+
+            txtCipher.Text = result.ToString();
         }
 
-        private int convertChar(char c)
+        private void btnCopy_MouseDown(object sender, MouseEventArgs e)
         {
-            if (char.IsLetter(c))
-            {
-                return char.ToLower(c) - 'a' + 1;
-            }
-            return -1;
+            Button button = (Button)sender;
+            button.BackColor = Color.FromArgb(59, 153, 200);
+        }
+
+        private void btnCopy_MouseUp(object sender, MouseEventArgs e)
+        {
+            Button button = (Button)sender;
+            button.BackColor = Color.FromArgb(238, 88, 115);
         }
     }
 }
