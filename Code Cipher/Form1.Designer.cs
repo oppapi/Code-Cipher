@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnType = new System.Windows.Forms.Button();
             this.txtKeyword = new System.Windows.Forms.TextBox();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnCopy = new System.Windows.Forms.Button();
@@ -41,6 +42,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnType);
             this.panel1.Controls.Add(this.txtKeyword);
             this.panel1.Controls.Add(this.btnReset);
             this.panel1.Controls.Add(this.btnCopy);
@@ -53,6 +55,22 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(989, 524);
             this.panel1.TabIndex = 0;
+            // 
+            // btnType
+            // 
+            this.btnType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(153)))), ((int)(((byte)(155)))));
+            this.btnType.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Bold);
+            this.btnType.ForeColor = System.Drawing.Color.White;
+            this.btnType.Location = new System.Drawing.Point(32, 432);
+            this.btnType.Margin = new System.Windows.Forms.Padding(4);
+            this.btnType.Name = "btnType";
+            this.btnType.Size = new System.Drawing.Size(148, 48);
+            this.btnType.TabIndex = 7;
+            this.btnType.Text = "Vigenere";
+            this.btnType.UseVisualStyleBackColor = false;
+            this.btnType.Click += new System.EventHandler(this.btnType_Click_1);
+            this.btnType.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnCopy_MouseDown);
+            this.btnType.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnReset_MouseUp);
             // 
             // txtKeyword
             // 
@@ -76,7 +94,7 @@
             this.btnReset.UseVisualStyleBackColor = false;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             this.btnReset.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnCopy_MouseDown);
-            this.btnReset.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnCopy_MouseUp);
+            this.btnReset.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnReset_MouseUp);
             // 
             // btnCopy
             // 
@@ -90,8 +108,9 @@
             this.btnCopy.TabIndex = 4;
             this.btnCopy.Text = "Copy";
             this.btnCopy.UseVisualStyleBackColor = false;
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             this.btnCopy.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnCopy_MouseDown);
-            this.btnCopy.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnCopy_MouseUp);
+            this.btnCopy.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnReset_MouseUp);
             // 
             // btnEncrypt
             // 
@@ -169,6 +188,7 @@
         private System.Windows.Forms.Button btnCopy;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.TextBox txtKeyword;
+        private System.Windows.Forms.Button btnType;
     }
 }
 
