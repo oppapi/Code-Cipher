@@ -34,10 +34,41 @@ namespace Code_Cipher
             {
                 vigenere();
             }
+            else if (btnType.Text == "Caesar")
+            {
+                caesar();
+            }
             else
             {
                 morse();
             }
+        }
+        private void caesar()
+        {
+            string input = txtPlain.Text.ToUpper();
+            string keyword = txtKeyword.Text.ToUpper();
+
+            if (string.IsNullOrEmpty(keyword) || !keyword.All(char.IsDigit))
+            {
+                MessageBox.Show("Please enter a number.");
+                return;
+            }
+
+            StringBuilder result = new StringBuilder();
+
+            foreach (char c in input)
+            {
+                if (char.IsLetter(c))
+                {
+                    char encrypted = (char)(((c - 'A' + Convert.ToInt32(keyword)) % 26) + 'A');
+                    result.Append(encrypted);
+                }
+                else
+                {
+                    result.Append(c);
+                }
+            }
+            txtCipher.Text = result.ToString();
         }
         private void morse()
         {
@@ -117,7 +148,9 @@ namespace Code_Cipher
         private void btnType_Click_1(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            button.Text = (button.Text == "Vigenere") ? "Morse" : "Vigenere";
+            if (button.Text == "Vigenere") { button.Text = "Morse";}
+            else if (button.Text == "Morse") { button.Text = "Caesar"; }
+            else if (button.Text == "Caesar") { button.Text = "Vigenere"; }
         }
 
         private void btnCopy_Click(object sender, EventArgs e)
